@@ -25,7 +25,6 @@ const Login = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
-    setError('');
     setFormData({ userName: '', password: '' });
 
     USERNAME === formData.userName && PASSWORD === formData.password

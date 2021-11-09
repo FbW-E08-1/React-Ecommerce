@@ -18,6 +18,7 @@ const MyProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
 
   const logoutHandler = () => {
+    setError('');
     setLoginData({ username: '', success: false });
   };
 

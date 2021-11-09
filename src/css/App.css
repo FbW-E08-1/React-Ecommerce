@@ -255,6 +255,19 @@ header a span {
   cursor: pointer;
 }
 
+.details-addToCart-button {
+  margin-top: 5px;
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: #151323;
+  background-color: cornsilk;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .orders-placed {
   width: 100%;
   height: 100%;
