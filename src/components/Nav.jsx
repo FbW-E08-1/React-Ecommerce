@@ -1,15 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Logo from './Logo';
 
 const Nav = () => {
   const context = useContext(MyContext);
-  const { loginData, setLoginData, cartItems } = context;
-
-  useEffect(() => {
-    setLoginData({ ...loginData, success: false });
-  }, [loginData, setLoginData]);
+  const { loginData, cartItems, logoutHandler } = context;
 
   return (
     <header>
@@ -17,6 +13,7 @@ const Nav = () => {
       <h3>Welcome {loginData.username}</h3>
       <ul>
         <NavLink
+          onClick={logoutHandler}
           to='/'
           style={({ isActive }) => {
             return { color: isActive && 'green' };

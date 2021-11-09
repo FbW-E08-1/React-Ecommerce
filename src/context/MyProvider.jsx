@@ -17,11 +17,16 @@ const MyProvider = (props) => {
   const [cocktailData] = useState(data);
   const [cartItems, setCartItems] = useState([]);
 
+  const logoutHandler = () => {
+    setLoginData({ username: '', success: false });
+  };
+
   return (
     <MyContext.Provider
       value={{
         loginData,
         setLoginData,
+        logoutHandler,
         formData,
         setFormData,
         error,
