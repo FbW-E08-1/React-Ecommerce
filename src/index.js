@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './components/Routes';
+import Routings from './routes/Routings';
 
 import './css/App.css'
 
 ReactDOM.render(
-    <Routes />, document.getElementById('root')
+    <Routings />, document.getElementById('root')
 );
 
 

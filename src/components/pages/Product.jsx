@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import MyContext from '../context/MyContext';
+import MyContext from '../../context/MyContext';
 
-import addToCart from './helpers/addToCart';
+import addToCart from '../../helpers/addToCart';
 
 const Product = ({ cocktail }) => {
   const { title, image, price } = cocktail;

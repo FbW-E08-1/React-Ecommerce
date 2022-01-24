@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import MyContext from '../context/MyContext';
+import MyContext from '../../context/MyContext';
 
-import Nav from './Nav';
+import Nav from '../Nav';
 
-import removeCocktail from './helpers/removeCocktail';
-import calculateLineTotals from './helpers/calculateLineTotals';
-import calculateGrandTotals from './helpers/calculateGrandTotal';
+import removeCocktail from '../../helpers/removeCocktail';
+import calculateLineTotals from '../../helpers/calculateLineTotals';
+import calculateGrandTotals from '../../helpers/calculateGrandTotal';
 
 const Checkout = () => {
   const context = useContext(MyContext);

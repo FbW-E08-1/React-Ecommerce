@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Nav from './Nav';
+import Nav from '../Nav';
 
-import MyContext from '../context/MyContext';
-import addToCart from './helpers/addToCart';
+import MyContext from '../../context/MyContext';
+import addToCart from '../../helpers/addToCart';
 
 const ProductDetail = () => {
   const location = useLocation();

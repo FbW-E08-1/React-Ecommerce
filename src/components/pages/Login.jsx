@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyContext from '../context/MyContext';
-import Logo from './Logo';
+import MyContext from '../../context/MyContext';
+import Logo from '../Logo';
 
 const Login = () => {
   const context = useContext(MyContext);

@@ -10,7 +10,7 @@ const Nav = () => {
   return (
     <header>
       <Logo />
-      <h3>Welcome {loginData.username}</h3>
+      <h3>Welcome {loginData.username} to Josephs Cocktail Bar</h3>
       <ul>
         <NavLink
           onClick={logoutHandler}

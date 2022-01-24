@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MyContext from '../context/MyContext';
+import MyContext from '../../context/MyContext';
 
-import Nav from './Nav';
+import Nav from '../Nav';
 
-import addToCart from './helpers/addToCart';
-import reduceQuantity from './helpers/reduceQuantity';
-import removeCocktail from './helpers/removeCocktail';
-import calculateLineTotals from './helpers/calculateLineTotals';
+import addToCart from '../../helpers/addToCart';
+import reduceQuantity from '../../helpers/reduceQuantity';
+import removeCocktail from '../../helpers/removeCocktail';
+import calculateLineTotals from '../../helpers/calculateLineTotals';
 
 const Cart = () => {
   const context = useContext(MyContext);

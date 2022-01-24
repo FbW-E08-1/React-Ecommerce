@@ -10,7 +10,7 @@ const cockTailData = [
     'Lemon twist for garnish']},
     {id: 1, name: 'Martini', title: 'Vodka Martini', image: 'https://i2.wp.com/dishesdelish.com/wp-content/uploads/2019/03/Vodka-Dirty-Martini-Square-1.jpg', price: 12.15, ingredients: ['2 oz Vodka',
     '1/2 to 3/4 oz dry vermouth',
-    'Lemon twist or three green olives garnish']},
+    'Lemon twist or one or three green olives, never two as garnish']},
     {id: 2, name: 'Mojito', title: 'Mojito', image: 'https://kitchenswagger.com/wp-content/uploads/2020/07/mojito-recipe3.jpg', price: 9.00, ingredients: ['10 fresh mint leaves',
     '1/2 lime, cut into 4 wedges',
     '2 tablespoons white sugar, or to taste',

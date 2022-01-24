@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import MyContext from '../context/MyContext';
-import Nav from './Nav';
+import MyContext from '../../context/MyContext';
+import Nav from '../Nav';
 import Product from './Product';
 
 const Products = () => {
