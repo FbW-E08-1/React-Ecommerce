@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MyContext from './MyContext';
 
 import data from '../data/cocktail-data';
@@ -17,6 +17,32 @@ const MyProvider = (props) => {
   const [cocktailData] = useState(data);
   const [cartItems, setCartItems] = useState([]);
 
+  const USERNAME = process.env.REACT_APP_USERNAME;
+  const PASSWORD = process.env.REACT_APP_PASSWORD;
+
+  useEffect(() => {
+    const localStorageCartItems = JSON.parse(localStorage.getItem('cartItems'));
+    localStorageCartItems && setCartItems(localStorageCartItems);
+  }, []);
+
+  useEffect(() => {
+    localStorage.removeItem('cartItems');
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const changeHandler = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const loginHandler = (e) => {
+    e.preventDefault();
+    setFormData({ userName: '', password: '' });
+
+    USERNAME === formData.userName && PASSWORD === formData.password
+      ? setLoginData({ username: USERNAME, success: true })
+      : setError({ error: 'There is a problem with your credentials' });
+  };
+
   const logoutHandler = () => {
     setError('');
     setLoginData({ username: '', success: false });
@@ -26,12 +52,12 @@ const MyProvider = (props) => {
     <MyContext.Provider
       value={{
         loginData,
-        setLoginData,
+        changeHandler,
+        loginHandler,
         logoutHandler,
         formData,
         setFormData,
         error,
-        setError,
         cocktailData,
         cartItems,
         setCartItems,

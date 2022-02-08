@@ -7,30 +7,17 @@ const Login = () => {
   const context = useContext(MyContext);
   const navigate = useNavigate();
 
-  const { loginData, setLoginData, formData, setFormData, error, setError } =
-    context;
+  const { loginData, changeHandler, loginHandler, formData, error } = context;
 
   const userNameRef = useRef();
-
-  const USERNAME = process.env.REACT_APP_USERNAME;
-  const PASSWORD = process.env.REACT_APP_PASSWORD;
 
   useEffect(() => {
     userNameRef.current.focus();
   }, []);
 
-  const changeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const loginHandler = (e) => {
-    e.preventDefault();
-    setFormData({ userName: '', password: '' });
-
-    USERNAME === formData.userName && PASSWORD === formData.password
-      ? setLoginData({ username: USERNAME, success: true })
-      : setError({ error: 'There is a problem with your credentials' });
-  };
+  useEffect(() => {
+    loginData.success && navigate('/products');
+  }, [loginData.success, navigate]);
 
   return (
     <main>
@@ -45,21 +32,26 @@ const Login = () => {
               name='userName'
               placeholder='Enter your name'
               value={formData.userName}
-              onChange={changeHandler}
+              onChange={(e) => changeHandler(e)}
             />
             <input
               type='password'
               name='password'
               placeholder='Enter your password'
               value={formData.password}
-              onChange={changeHandler}
+              onChange={(e) => changeHandler(e)}
             />
-            <button onClick={loginHandler}>Login</button>
+            <button onClick={(e) => loginHandler(e)}>Login</button>
           </form>
         </h2>
-        {loginData.success ? (
-          navigate('./products', { replace: true })
+        {/* {loginData.success ? (
+          navigate('/products', { replace: true })
         ) : (
+          <aside className='aside-errors'>
+            <p>{error.error}</p>
+          </aside>
+        )} */}
+        {error.error && (
           <aside className='aside-errors'>
             <p>{error.error}</p>
           </aside>
