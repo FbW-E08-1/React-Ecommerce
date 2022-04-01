@@ -1,11 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOMClient from 'react-dom/client';
+
+import MyProvider from './context/MyProvider';
 import Routings from './routes/Routings';
 
-import './css/App.css'
+import './App.css'
 
-ReactDOM.render(
-    <Routings />, document.getElementById('root')
-);
+const root = ReactDOMClient.createRoot(document.querySelector('#root'))
+
+root.render(<MyProvider><Routings /></MyProvider>);
+
+
 
 

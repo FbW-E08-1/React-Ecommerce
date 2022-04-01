@@ -1,4 +1,6 @@
-const addToCart = (cocktail,cartItems, setCartItems) => {
+import { ACTIONS } from "../actions/actions";
+
+const addToCart = (cocktail,cartItems, cartItemsDispatch) => {
 
   //Check if item already in our cart
   const found = cartItems.find((item) => item.id === cocktail.id);
@@ -6,7 +8,7 @@ const addToCart = (cocktail,cartItems, setCartItems) => {
   //If the item is not in our cart use the object we sent in through the click event called clickedItem, add it to our cartItems array and create a new property
   //inside the clickedItem object called quantity and initialize it with 1.
   if (found === undefined) {
-    setCartItems([...cartItems, { ...cocktail, quantity: 1 }]);
+    cartItemsDispatch({type: ACTIONS.CHANGE, payload:[...cartItems, { ...cocktail, quantity: 1 }]});
   } else {
     //If we have the item clicked inside our cart already, we need to get the index of this object within the cartItems array
     const index = cartItems.indexOf(found);
@@ -24,7 +26,7 @@ const addToCart = (cocktail,cartItems, setCartItems) => {
     copyCartItems.splice(index, 1, found);
 
     //All we need to do here is replace whatever we had in our cartItems state array with our copy.
-    setCartItems(copyCartItems);
+    cartItemsDispatch({type: ACTIONS.CHANGE, payload: copyCartItems});
   }
 };
 

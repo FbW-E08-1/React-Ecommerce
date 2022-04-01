@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import MyContext from '../../context/MyContext';
 
@@ -8,7 +8,7 @@ const Product = ({ cocktail }) => {
   const { title, image, price } = cocktail;
 
   const context = useContext(MyContext);
-  const { cartItems, setCartItems } = context;
+  const { cartItems, cartItemsDispatch } = context;
 
   return (
     <section className='product' style={{ backgroundImage: `URL(${image})` }}>
@@ -16,7 +16,8 @@ const Product = ({ cocktail }) => {
         <h5>{title}</h5>
       </Link>
       <aside className='products-aside'>
-        <button onClick={() => addToCart(cocktail, cartItems, setCartItems)}>
+        <button
+          onClick={() => addToCart(cocktail, cartItems, cartItemsDispatch)}>
           Add to Cart
         </button>
         <p>€{price.toFixed(2)}</p>

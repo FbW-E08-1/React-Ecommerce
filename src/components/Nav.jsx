@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import MyContext from '../context/MyContext';
 import Logo from './Logo';
@@ -10,7 +10,9 @@ const Nav = () => {
   return (
     <header>
       <Logo />
-      <h3>Welcome {loginData.username} to Josephs Cocktail Bar</h3>
+      <h3>
+        Welcome {loginData.username} to <span>Sally's</span> Cocktail Bar
+      </h3>
       <ul>
         <NavLink
           onClick={logoutHandler}

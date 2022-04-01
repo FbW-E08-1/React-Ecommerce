@@ -1,53 +1,93 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import MyContext from './MyContext';
 
+//Cocktail data
 import data from '../data/cocktail-data';
 
-const MyProvider = (props) => {
-  const [loginData, setLoginData] = useState({ userName: '', success: false });
-  const [formData, setFormData] = useState({
-    userName: '',
-    password: '',
-  });
+//Actions
+import { ACTIONS } from '../actions/actions';
 
-  const [error, setError] = useState({
-    error: '',
-  });
+//Reducers
+import { loginDataReducer } from '../reducers/loginDataReducer';
+import { formDataReducer } from '../reducers/formDataReducer';
+import { errorReducer } from '../reducers/errorReducer';
+import { cartItemsReducer } from '../reducers/cartItemsReducer';
 
+const MyProvider = ({ children }) => {
+  //useState
   const [cocktailData] = useState(data);
-  const [cartItems, setCartItems] = useState([]);
 
+  //Reducer initializations
+  const loginDataInit = { userName: '', success: false };
+  const formDataInit = { userName: '', password: '' };
+  const errorInit = { error: '' };
+
+  //useReducer
+  const [loginData, loginDataDispatch] = useReducer(
+    loginDataReducer,
+    loginDataInit
+  );
+  const [formData, formDataDispatch] = useReducer(
+    formDataReducer,
+    formDataInit
+  );
+  const [error, errorDispatch] = useReducer(errorReducer, errorInit);
+  const [cartItems, cartItemsDispatch] = useReducer(cartItemsReducer, []);
+
+  //Environment variables
   const USERNAME = process.env.REACT_APP_USERNAME;
   const PASSWORD = process.env.REACT_APP_PASSWORD;
 
+  //Get localStorage
   useEffect(() => {
     const localStorageCartItems = JSON.parse(localStorage.getItem('cartItems'));
-    localStorageCartItems && setCartItems(localStorageCartItems);
+    localStorageCartItems &&
+      cartItemsDispatch({ type: ACTIONS.SET, payload: localStorageCartItems });
   }, []);
 
+  //SetLocalStorage
   useEffect(() => {
     localStorage.removeItem('cartItems');
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
   }, [cartItems]);
 
+  //Form ChangeHandler
   const changeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    formDataDispatch({
+      type: ACTIONS.GET,
+      payload: { ...formData, [e.target.name]: e.target.value },
+    });
   };
 
+  //Login Handler
   const loginHandler = (e) => {
     e.preventDefault();
-    setFormData({ userName: '', password: '' });
+    formDataDispatch({
+      type: ACTIONS.RESET,
+      payload: { userName: '', password: '' },
+    });
 
     USERNAME === formData.userName && PASSWORD === formData.password
-      ? setLoginData({ username: USERNAME, success: true })
-      : setError({ error: 'There is a problem with your credentials' });
+      ? loginDataDispatch({
+          type: ACTIONS.CHANGE,
+          payload: { username: USERNAME, success: true },
+        })
+      : errorDispatch({
+          type: ACTIONS.CHANGE,
+          payload: { error: 'There is a problem with your credentials' },
+        });
   };
 
+  //Logout Handler
   const logoutHandler = () => {
-    setError('');
-    setLoginData({ username: '', success: false });
+    errorDispatch({ type: ACTIONS.RESET, payload: '' });
+    loginDataDispatch({
+      type: ACTIONS.RESET,
+      payload: { username: '', success: false },
+    });
   };
 
+  //Add all state, data and functionality to the context(Store)
   return (
     <MyContext.Provider
       value={{
@@ -56,13 +96,12 @@ const MyProvider = (props) => {
         loginHandler,
         logoutHandler,
         formData,
-        setFormData,
         error,
         cocktailData,
         cartItems,
-        setCartItems,
+        cartItemsDispatch,
       }}>
-      {props.children}
+      {children}
     </MyContext.Provider>
   );
 };

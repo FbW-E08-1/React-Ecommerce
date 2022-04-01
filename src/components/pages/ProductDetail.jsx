@@ -7,11 +7,12 @@ import addToCart from '../../helpers/addToCart';
 
 const ProductDetail = () => {
   const location = useLocation();
-  const { title, image, price, ingredients } = location.state;
   const navigate = useNavigate();
 
+  const { title, image, price, ingredients } = location?.state || {};
+
   const context = useContext(MyContext);
-  const { cartItems, setCartItems } = context;
+  const { cartItems, cartItemsDispatch } = context;
 
   return (
     <main>
@@ -22,12 +23,14 @@ const ProductDetail = () => {
           <h4>{title}</h4>
           <p>€{price}</p>
           <h2>Ingredients</h2>
-          {ingredients.map((ingredient) => (
-            <p key={ingredient.id}>{ingredient}</p>
+          {ingredients?.map((ingredient, i) => (
+            <p key={i}>{ingredient}</p>
           ))}
           <button
             className='details-addToCart-button'
-            onClick={() => addToCart(location.state, cartItems, setCartItems)}>
+            onClick={() =>
+              addToCart(location.state, cartItems, cartItemsDispatch)
+            }>
             Add to Cart
           </button>
         </aside>

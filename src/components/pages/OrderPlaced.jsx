@@ -1,16 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../Nav';
 import MyContext from '../../context/MyContext';
+import { ACTIONS } from '../../actions/actions';
 
 const OrderPlaced = () => {
   const context = useContext(MyContext);
-  const { setCartItems } = context;
+  const { cartItemsDispatch } = context;
   const navigate = useNavigate();
 
   useEffect(() => {
-    setCartItems([]);
-  }, [setCartItems]);
+    cartItemsDispatch({ type: ACTIONS.RESET, payload: [] });
+  }, [cartItemsDispatch]);
 
   return (
     <main>

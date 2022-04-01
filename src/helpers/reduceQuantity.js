@@ -1,4 +1,6 @@
-const reduceQuantity = (cocktail, cartItems, setCartItems) => {
+import { ACTIONS } from "../actions/actions";
+
+const reduceQuantity = (cocktail, cartItems, cartItemsDispatch) => {
     //Grab the object from the cart
     const found = cartItems.find((item) => item.id === cocktail.id);
     //Get the index of our found copy item within the cartItems array
@@ -18,7 +20,7 @@ const reduceQuantity = (cocktail, cartItems, setCartItems) => {
     found.quantity >= 1
       ? copyCartItems.splice(index, 1, found)
       : copyCartItems.splice(index, 1);
-    setCartItems(copyCartItems);
+    cartItemsDispatch({type: ACTIONS.CHANGE, payload: copyCartItems});
   };
 
 

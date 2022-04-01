@@ -1,4 +1,6 @@
-const removeCocktail = (cocktail, cartItems, setCartItems) => {
+import { ACTIONS } from "../actions/actions";
+
+const removeCocktail = (cocktail, cartItems, cartItemsDispatch) => {
     //Grab the object from the cart
     const found = cartItems.find((item) => item.id === cocktail.id);
 
@@ -12,7 +14,7 @@ const removeCocktail = (cocktail, cartItems, setCartItems) => {
     copyCartItems.splice(index, 1);
 
     //Update the state
-    setCartItems(copyCartItems);
+    cartItemsDispatch({type: ACTIONS.CHANGE, payload: copyCartItems});
   };
 
   export default removeCocktail

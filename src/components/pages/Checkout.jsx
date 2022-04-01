@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MyContext from '../../context/MyContext';
 
@@ -10,7 +10,7 @@ import calculateGrandTotals from '../../helpers/calculateGrandTotal';
 
 const Checkout = () => {
   const context = useContext(MyContext);
-  const { cartItems, setCartItems } = context;
+  const { cartItems, cartItemsDispatch } = context;
   const navigate = useNavigate();
 
   const lineTotals = calculateLineTotals(cartItems);
@@ -41,7 +41,9 @@ const Checkout = () => {
         </aside>
         <button
           className='remove-button'
-          onClick={() => removeCocktail(cocktail, cartItems, setCartItems)}>
+          onClick={() =>
+            removeCocktail(cocktail, cartItems, cartItemsDispatch)
+          }>
           Remove cocktail
         </button>
       </aside>

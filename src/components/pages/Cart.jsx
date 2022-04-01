@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MyContext from '../../context/MyContext';
 
@@ -11,7 +11,7 @@ import calculateLineTotals from '../../helpers/calculateLineTotals';
 
 const Cart = () => {
   const context = useContext(MyContext);
-  const { cartItems, setCartItems } = context;
+  const { cartItems, cartItemsDispatch } = context;
   const navigate = useNavigate();
 
   const lineTotals = calculateLineTotals(cartItems);
@@ -39,16 +39,21 @@ const Cart = () => {
           <p>€{cocktail.price.toFixed(2)}</p>
           <h4>Line Total {lineTotals[index].toFixed(2)}</h4>
         </aside>
-        <button onClick={() => addToCart(cocktail, cartItems, setCartItems)}>
+        <button
+          onClick={() => addToCart(cocktail, cartItems, cartItemsDispatch)}>
           +
         </button>
         <button
-          onClick={() => reduceQuantity(cocktail, cartItems, setCartItems)}>
+          onClick={() =>
+            reduceQuantity(cocktail, cartItems, cartItemsDispatch)
+          }>
           -
         </button>
         <button
           className='remove-button'
-          onClick={() => removeCocktail(cocktail, cartItems, setCartItems)}>
+          onClick={() =>
+            removeCocktail(cocktail, cartItems, cartItemsDispatch)
+          }>
           Remove cocktail
         </button>
       </aside>

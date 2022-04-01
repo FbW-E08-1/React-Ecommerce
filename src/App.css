@@ -25,7 +25,7 @@
     #12331a,
     #2c3405
   );
-  --headings: #353333;
+  --headings: #a09c9c;
 }
 
 main {
@@ -38,10 +38,28 @@ main {
   flex-grow: 1;
 }
 
+.logo-aside {
+  display: flex;
+}
+
 .logo {
   margin: 20px;
   width: 70px;
   height: 70px;
+}
+
+.logo-aside h3 {
+  width: 70%;
+  display: inline;
+  font-size: 1.5rem;
+  color: cornsilk;
+  padding: 30px 0 30px 110px;
+}
+
+.logo-aside h3 span {
+  font-size: 1.6rem;
+  color: #fcedb1;
+  font-style: italic;
 }
 
 .login-page {
@@ -116,9 +134,15 @@ header {
 header h3 {
   width: 70%;
   display: inline;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   color: cornsilk;
-  padding: 30px 0 30px 510px;
+  padding: 30px 0 30px 210px;
+}
+
+header h3 span {
+  font-size: 1.6rem;
+  color: #fcedb1;
+  font-style: italic;
 }
 
 header ul {
