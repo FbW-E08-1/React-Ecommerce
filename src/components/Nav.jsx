@@ -7,6 +7,8 @@ const Nav = () => {
   const context = useContext(MyContext);
   const { loginData, cartItems, logoutHandler } = context;
 
+  //All NavLinks are turned to green and have the link set to un-clickable when active
+
   return (
     <header>
       <Logo />
@@ -17,25 +19,28 @@ const Nav = () => {
         <NavLink
           onClick={logoutHandler}
           to='/'
-          style={({ isActive }) => {
-            return { color: isActive && 'green' };
-          }}>
+          style={({ isActive }) => ({
+            color: isActive && 'green',
+            pointerEvents: isActive && 'none',
+          })}>
           <li>Logout</li>
         </NavLink>
 
         <NavLink
           to='/products'
-          style={({ isActive }) => {
-            return { color: isActive && 'green' };
-          }}>
+          style={({ isActive }) => ({
+            color: isActive && 'green',
+            pointerEvents: isActive && 'none',
+          })}>
           <li>Products</li>
         </NavLink>
 
         <NavLink
           to='/cart'
-          style={({ isActive }) => {
-            return { color: isActive && 'green' };
-          }}>
+          style={({ isActive }) => ({
+            color: isActive && 'green',
+            pointerEvents: isActive && 'none',
+          })}>
           <li>
             Cart <span>{cartItems.length}</span>
           </li>
@@ -43,9 +48,10 @@ const Nav = () => {
 
         <NavLink
           to='/checkout'
-          style={({ isActive }) => {
-            return { color: isActive && 'green' };
-          }}>
+          style={({ isActive }) => ({
+            color: isActive && 'green',
+            pointerEvents: isActive && 'none',
+          })}>
           <li> Checkout </li>
         </NavLink>
       </ul>

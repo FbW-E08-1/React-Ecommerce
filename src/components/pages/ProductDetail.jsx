@@ -11,8 +11,7 @@ const ProductDetail = () => {
 
   const { title, image, price, ingredients } = location?.state || {};
 
-  const context = useContext(MyContext);
-  const { cartItems, cartItemsDispatch } = context;
+  const { cartItems, cartItemsDispatch } = useContext(MyContext);
 
   return (
     <main>
@@ -29,7 +28,7 @@ const ProductDetail = () => {
           <button
             className='details-addToCart-button'
             onClick={() =>
-              addToCart(location.state, cartItems, cartItemsDispatch)
+              addToCart(location?.state, cartItems, cartItemsDispatch)
             }>
             Add to Cart
           </button>

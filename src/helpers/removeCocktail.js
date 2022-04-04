@@ -1,7 +1,7 @@
 import { ACTIONS } from "../actions/actions";
 
 const removeCocktail = (cocktail, cartItems, cartItemsDispatch) => {
-    //Grab the object from the cart
+    //Get the cocktail object from the cart matching on Id.
     const found = cartItems.find((item) => item.id === cocktail.id);
 
     //Get the index of our found copy item within the cartItems array

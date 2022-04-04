@@ -14,7 +14,7 @@ import { errorReducer } from '../reducers/errorReducer';
 import { cartItemsReducer } from '../reducers/cartItemsReducer';
 
 const MyProvider = ({ children }) => {
-  //useState
+  //As there will be no update of the initial base data we can store it in state using a useState hook.
   const [cocktailData] = useState(data);
 
   //Reducer initializations
@@ -22,16 +22,24 @@ const MyProvider = ({ children }) => {
   const formDataInit = { userName: '', password: '' };
   const errorInit = { error: '' };
 
-  //useReducer
+  //useReducers
+
+  //Login data
   const [loginData, loginDataDispatch] = useReducer(
     loginDataReducer,
     loginDataInit
   );
+
+  //Form data
   const [formData, formDataDispatch] = useReducer(
     formDataReducer,
     formDataInit
   );
+
+  //User errors
   const [error, errorDispatch] = useReducer(errorReducer, errorInit);
+
+  //Cart data
   const [cartItems, cartItemsDispatch] = useReducer(cartItemsReducer, []);
 
   //Environment variables

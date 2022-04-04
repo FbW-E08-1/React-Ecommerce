@@ -4,8 +4,7 @@ import Nav from '../Nav';
 import Product from './Product';
 
 const Products = () => {
-  const context = useContext(MyContext);
-  const { cocktailData } = context;
+  const { cocktailData } = useContext(MyContext);
 
   const cocktailList = cocktailData.map((cocktail) => (
     <Product key={cocktail.id} cocktail={cocktail} />

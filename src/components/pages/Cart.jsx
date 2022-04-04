@@ -4,18 +4,20 @@ import MyContext from '../../context/MyContext';
 
 import Nav from '../Nav';
 
+//Import all helper functions
 import addToCart from '../../helpers/addToCart';
 import reduceQuantity from '../../helpers/reduceQuantity';
 import removeCocktail from '../../helpers/removeCocktail';
 import calculateLineTotals from '../../helpers/calculateLineTotals';
 
 const Cart = () => {
-  const context = useContext(MyContext);
-  const { cartItems, cartItemsDispatch } = context;
+  //Get functionality from our Context
+  const { cartItems, cartItemsDispatch } = useContext(MyContext);
+
+  //Initialize the navigate hook
   const navigate = useNavigate();
 
-  const lineTotals = calculateLineTotals(cartItems);
-
+  //If there are no items in our cart display a message
   if (cartItems.length === 0)
     return (
       <main>
@@ -27,6 +29,10 @@ const Cart = () => {
       </main>
     );
 
+  //Calculate line totals.
+  const lineTotals = calculateLineTotals(cartItems);
+
+  //Create cart items for display
   const cocktailList = cartItems.map((cocktail, index) => {
     return (
       <aside key={cocktail.id} className='cart-line'>
@@ -39,16 +45,22 @@ const Cart = () => {
           <p>€{cocktail.price.toFixed(2)}</p>
           <h4>Line Total {lineTotals[index].toFixed(2)}</h4>
         </aside>
+
+        {/* If the plus sign is clicked increment the quantity with the addToCart helper*/}
         <button
           onClick={() => addToCart(cocktail, cartItems, cartItemsDispatch)}>
           +
         </button>
+
+        {/* If the minus sign is clicked decrement the quantity with the reduceQuantity helper*/}
         <button
           onClick={() =>
             reduceQuantity(cocktail, cartItems, cartItemsDispatch)
           }>
           -
         </button>
+
+        {/* If the remove button is clicked, remove the item with the removeCocktail helper */}
         <button
           className='remove-button'
           onClick={() =>

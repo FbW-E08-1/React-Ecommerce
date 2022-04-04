@@ -3,10 +3,10 @@ import {ACTIONS} from '../actions/actions'
 export const loginDataReducer = (loginData, {type, payload}) => {
     switch(type) {
         case ACTIONS.CHANGE:
-            return loginData = payload
+            return payload
         case ACTIONS.RESET:
-            return loginData = payload
+            return payload
         default:
-            return loginData
+            return loginData 
     }
 }

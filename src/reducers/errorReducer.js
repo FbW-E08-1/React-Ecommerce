@@ -3,9 +3,9 @@ import {ACTIONS} from '../actions/actions'
 export const errorReducer = (error, {type, payload}) => {
     switch(type) {
         case ACTIONS.CHANGE:
-            return error = payload
+            return payload
         case ACTIONS.RESET:
-            return error = payload
+            return payload
         default:
             return error
     }

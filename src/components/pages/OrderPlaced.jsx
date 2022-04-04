@@ -5,8 +5,7 @@ import MyContext from '../../context/MyContext';
 import { ACTIONS } from '../../actions/actions';
 
 const OrderPlaced = () => {
-  const context = useContext(MyContext);
-  const { cartItemsDispatch } = context;
+  const { cartItemsDispatch } = useContext(MyContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,9 +17,7 @@ const OrderPlaced = () => {
       <Nav />
       <section className='orders-placed'>
         <p>Order Placed</p>
-        <button onClick={() => navigate('/products', { replace: true })}>
-          Carry on shopping
-        </button>
+        <button onClick={() => navigate('/products')}>Carry on shopping</button>
       </section>
     </main>
   );

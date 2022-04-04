@@ -15,6 +15,8 @@ const Routings = () => (
     <main>
       <Routes>
         <Route path='/' element={<Login />} />
+
+        {/* All routes wrapped with our Auth route are protected routes. */}
         <Route element={<Auth />}>
           <Route path='/products' element={<Products />} />
           <Route path='/productDetail' element={<ProductDetail />} />

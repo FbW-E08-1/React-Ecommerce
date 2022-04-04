@@ -7,8 +7,7 @@ import addToCart from '../../helpers/addToCart';
 const Product = ({ cocktail }) => {
   const { title, image, price } = cocktail;
 
-  const context = useContext(MyContext);
-  const { cartItems, cartItemsDispatch } = context;
+  const { cartItems, cartItemsDispatch } = useContext(MyContext);
 
   return (
     <section className='product' style={{ backgroundImage: `URL(${image})` }}>

@@ -1,12 +1,14 @@
 import { ACTIONS } from "../actions/actions";
 
+
+//Receive all arguments sent 
 const addToCart = (cocktail,cartItems, cartItemsDispatch) => {
 
-  //Check if item already in our cart
+  //Check if item already exists in our cart
   const found = cartItems.find((item) => item.id === cocktail.id);
 
-  //If the item is not in our cart use the object we sent in through the click event called clickedItem, add it to our cartItems array and create a new property
-  //inside the clickedItem object called quantity and initialize it with 1.
+  //If the item is not in our cart use the object we sent in through the click event called cocktail, add it to our cartItems array 
+  //and create a new property inside the cocktail object called quantity and initialize it with 1.
   if (found === undefined) {
     cartItemsDispatch({type: ACTIONS.CHANGE, payload:[...cartItems, { ...cocktail, quantity: 1 }]});
   } else {
@@ -20,9 +22,9 @@ const addToCart = (cocktail,cartItems, cartItemsDispatch) => {
     let copyCartItems = [...cartItems];
 
     //We need to remove the original object from our copied array.
-    //We use splice. Splice accepts three arguments. the start index, how many elements to remove from our starting index and what to replace it with
-    //In this case we know the index of our object from our indexOf command. We only want to remove this object hence the 1 in our second argument
-    //and we want to replace the removed object with our new amended found object.
+    //We use splice. Splice accepts three arguments. the start index, how many elements to remove from our starting index and what
+    //to replace it with. In this case we know the index of our object from our indexOf command. We only want to remove
+    //this object, hence the 1 in our second argument. We also want to replace the removed object with our new amended found object.
     copyCartItems.splice(index, 1, found);
 
     //All we need to do here is replace whatever we had in our cartItems state array with our copy.
